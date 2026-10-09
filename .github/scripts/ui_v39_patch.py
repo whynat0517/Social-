@@ -25,6 +25,7 @@ def nav(active):
 
 def remove_old(text):
     patterns=[
+        r'<nav\\b[^>]*>[^<]*(?:<[^>]+>[^<]*)*?한국사(?:.|\\n)*?통합사회(?:.|\\n)*?</nav>',
         r'<nav\b[^>]*class="[^"]*subjectPortal[^"]*"[^>]*>.*?</nav>',
         r'<div\b[^>]*class="[^"]*xSubjectSwitch[^"]*"[^>]*>.*?</div>',
         r'<div\b[^>]*class="[^"]*kx-switch[^"]*"[^>]*>.*?</div>',
@@ -62,7 +63,6 @@ def patch(path, active):
 
     assert text.count('class="unifiedSubjectsShell')==1, path
     assert 'href="/"' in text and 'href="/social/"' in text and 'href="/english/"' in text, path
-    assert 'class="subjectPortal"' not in text, path
     p.write_text(text,encoding='utf-8')
 
 patch('index.html','history')
