@@ -3,16 +3,36 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/study",
+      "destination": "/study.html"
+    },
+    {
+      "source": "/study/",
+      "destination": "/study.html"
+    },
+    {
       "source": "/history",
-      "destination": "/index.html"
+      "destination": "/history-runtime.html"
     },
     {
       "source": "/social",
-      "destination": "/social/index.html"
+      "destination": "/social-runtime.html"
+    },
+    {
+      "source": "/social/",
+      "destination": "/social-runtime.html"
     },
     {
       "source": "/english",
       "destination": "/english/index.html"
+    },
+    {
+      "source": "/korean",
+      "destination": "/korean/index.html"
+    },
+    {
+      "source": "/korean/",
+      "destination": "/korean/index.html"
     }
   ],
   "headers": [
@@ -32,6 +52,13 @@
           "value": "strict-origin-when-cross-origin"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/study",
+      "permanent": false
     }
   ]
 }
