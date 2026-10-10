@@ -23,7 +23,7 @@ body{display:grid;grid-template-rows:auto minmax(0,1fr)}
 <header id="subjectShell">
   <div class="shellTop">
     <div class="brand"><span class="brandMark" aria-hidden="true">✦</span><span class="brandText">통합 시험 대비</span><span class="status" id="status">과목을 선택하세요</span></div>
-    <a id="openDirect" class="openDirect" href="/social" target="_blank" rel="noopener noreferrer">새 창에서 열기 ↗</a>
+    <a id="openDirect" class="openDirect" href="/history" target="_blank" rel="noopener noreferrer">새 창에서 열기 ↗</a>
   </div>
   <nav class="subjectNav" aria-label="과목 선택">
     <button class="subjectBtn" type="button" data-subject="history">한국사</button>
@@ -54,10 +54,10 @@ body{display:grid;grid-template-rows:auto minmax(0,1fr)}
 
   function subjectFromHash(){
     var key=(location.hash||'').replace(/^#/,'').toLowerCase();
-    return Object.prototype.hasOwnProperty.call(subjects,key)?key:'social';
+    return Object.prototype.hasOwnProperty.call(subjects,key)?key:'history';
   }
   function activate(key,writeHash){
-    if(!Object.prototype.hasOwnProperty.call(subjects,key))key='social';
+    if(!Object.prototype.hasOwnProperty.call(subjects,key))key='history';
     var data=subjects[key];
     for(var i=0;i<buttons.length;i++){
       var active=buttons[i].getAttribute('data-subject')===key;
@@ -69,7 +69,7 @@ body{display:grid;grid-template-rows:auto minmax(0,1fr)}
     current=key;
     cover.hidden=false;
     frame.title=data.label+' 학습 프로그램';
-    frame.src=data.path+'?portal=1&v=20261010-historytab4';
+    frame.src=data.path+'?portal=1&v=20261010-quizfix2';
     if(writeHash&&location.hash!=='#'+key){
       if(history&&history.replaceState){history.replaceState(null,'','#'+key);}else{location.hash=key;}
     }

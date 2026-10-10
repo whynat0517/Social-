@@ -29,10 +29,6 @@
     {
       "source": "/korean",
       "destination": "/korean/index.html"
-    },
-    {
-      "source": "/korean/",
-      "destination": "/korean/index.html"
     }
   ],
   "headers": [
