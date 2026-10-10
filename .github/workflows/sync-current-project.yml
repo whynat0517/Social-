@@ -1,0 +1,42 @@
+name: Sync latest integrated project
+
+on:
+  push:
+    paths:
+      - ".github/workflows/sync-current-project.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout social deployment repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch latest integrated project
+        run: |
+          git clone --depth 1 --branch main https://github.com/whynat0517/hanguksa.git /tmp/latest-project
+
+      - name: Replace deployed project with latest version
+        run: |
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            /tmp/latest-project/ ./
+
+      - name: Commit synchronized project
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Already synchronized."
+            exit 0
+          fi
+          git commit -m "Sync latest integrated study project"
+          git push origin main
